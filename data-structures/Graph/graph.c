@@ -31,3 +31,23 @@ Graph *createGraph(int amountOfVertices) {
   }
   return newGraph;
 }
+
+Adjacency *createAdjacency(int vertex, int weight) {
+  Adjacency *newAdjacency = (Adjacency *) malloc(sizeof(Adjacency));
+  newAdjacency->vertex = vertex;
+  newAdjacency->weight = weight;
+  newAdjacency->next = NULL;
+  return newAdjacency;
+}
+
+// bool createEdge(Graph *graph, int initialVertex, int finalVertex, int weight) {
+//   if (!graph) return false;
+//   if (finalVertex < 0 || finalVertex >= graph->vertices) {
+//     return false;
+//   }
+//   if (initialVertex < 0 || initialVertex >= graph->vertices) {
+//     return false;
+//   }
+//   Adjacency *newAdjacency = createAdjacency(finalVertex, weight);
+
+// }
