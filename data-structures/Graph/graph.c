@@ -40,14 +40,31 @@ Adjacency *createAdjacency(int vertex, int weight) {
   return newAdjacency;
 }
 
-// bool createEdge(Graph *graph, int initialVertex, int finalVertex, int weight) {
-//   if (!graph) return false;
-//   if (finalVertex < 0 || finalVertex >= graph->vertices) {
-//     return false;
-//   }
-//   if (initialVertex < 0 || initialVertex >= graph->vertices) {
-//     return false;
-//   }
-//   Adjacency *newAdjacency = createAdjacency(finalVertex, weight);
+bool createEdge(Graph *graph, int initialVertex, int finalVertex, int weight) {
+  if (!graph) return false;
+  if (finalVertex < 0 || finalVertex >= graph->vertices) {
+    return false;
+  }
+  if (initialVertex < 0 || initialVertex >= graph->vertices) {
+    return false;
+  }
+  Adjacency *newAdjacency = createAdjacency(finalVertex, weight);
+  newAdjacency->next = graph->adjacency[initialVertex].head;
+  graph->adjacency[initialVertex].head = newAdjacency;
+  graph->edges++;
+  return true;
+}
 
-// }
+void printGraph(Graph *graph) {
+  printf("Vértices %d. Arestas %d.\n", graph->vertices, graph->edges);
+  for (int i = 0; i < graph->vertices; i++) {
+    printf("v%d: ", i);
+    Adjacency *adjacency = graph->adjacency[i].head;
+    while (adjacency) {
+      printf("v%d(%d) ", adjacency->vertex, adjacency->weight);
+      adjacency = adjacency->next;
+    }
+    printf("\n");
+  }
+}
+
