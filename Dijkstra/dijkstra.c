@@ -71,6 +71,7 @@ void relax(Graph *graph, int *distances, int *predecessor, int u, int v)
 
 int *dijkstra(Graph *graph, int startingVertex)
 {
+    startingVertex--;
     int *distances = (int *) malloc(graph->vertices * sizeof(int));
     int predecessors[graph->vertices];
     bool opened[graph->vertices];

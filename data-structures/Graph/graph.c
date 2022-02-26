@@ -43,9 +43,11 @@ Adjacency *createAdjacency(int vertex, int weight) {
 bool createEdge(Graph *graph, int initialVertex, int finalVertex, int weight) {
   if (!graph) return false;
   if (finalVertex < 0 || finalVertex >= graph->vertices) {
+    printf("FINAL VERTEX OUT OF BOUNDS!");
     return false;
   }
   if (initialVertex < 0 || initialVertex >= graph->vertices) {
+    printf("INITIAL VERTEX OUT OF BOUNDS!");
     return false;
   }
   Adjacency *newAdjacency = createAdjacency(finalVertex, weight);
@@ -58,10 +60,10 @@ bool createEdge(Graph *graph, int initialVertex, int finalVertex, int weight) {
 void printGraph(Graph *graph) {
   printf("Vértices %d. Arestas %d.\n", graph->vertices, graph->edges);
   for (int i = 0; i < graph->vertices; i++) {
-    printf("v%d: ", i);
+    printf("v%d: ", i+1);
     Adjacency *adjacency = graph->adjacency[i].head;
     while (adjacency) {
-      printf("v%d(%d) ", adjacency->vertex, adjacency->weight);
+      printf("v%d(%d) ", adjacency->vertex+1, adjacency->weight);
       adjacency = adjacency->next;
     }
     printf("\n");
@@ -81,8 +83,9 @@ Graph *readGraph() {
     char x = getchar();
     int isInTheEndOfAdjacency = (x == '\n');
     if (isInTheEndOfAdjacency) {
-      // printf("Current adjacency: (%d) --[%d]-- (%d)\n", currentAdjacency[0], currentAdjacency[1], currentAdjacency[2]);
-      createEdge(graph, currentAdjacency[0], currentAdjacency[1], currentAdjacency[2]);
+      // printf("Current adjacency: (%d) --[%d]-- (%d)\n", currentAdjacency[0], currentAdjacency[2], currentAdjacency[1]);
+      bool result = createEdge(graph, currentAdjacency[0] - 1, currentAdjacency[1] - 1, currentAdjacency[2]);
+      // printf("RESULT: %d \n", result);
       currentAdjacency[0] = -1;
       currentAdjacency[1] = -1;
       currentAdjacency[2] = 1;
@@ -93,8 +96,9 @@ Graph *readGraph() {
     int xAsInt = atoi(&x);
     int isEOF = (x != '0' && xAsInt == 0);
     if (isEOF) {
-      // printf("Final adjacency: (%d) --[%d]-- (%d)\n", currentAdjacency[0], currentAdjacency[1], currentAdjacency[2]);
-      createEdge(graph, currentAdjacency[0], currentAdjacency[1], currentAdjacency[2]);
+      // printf("Final adjacency: (%d) --[%d]-- (%d)\n", currentAdjacency[0], currentAdjacency[2], currentAdjacency[1]);
+      bool result = createEdge(graph, currentAdjacency[0] - 1, currentAdjacency[1] - 1, currentAdjacency[2]);
+      // printf("RESULT: %d \n", result);
       currentAdjacency[0] = -1;
       currentAdjacency[1] = -1;
       currentAdjacency[2] = 1;
@@ -104,6 +108,6 @@ Graph *readGraph() {
     currentAdjacency[currentPosition] = xAsInt;
     currentPosition++;
   }
-  printf("\n");
+  // printf("\n");
   return graph;
 }
