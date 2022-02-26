@@ -25,26 +25,36 @@ int main(int argc, char *argv[])
 {
     printf("%d\n", argc);
     int iterator = 1;
+    int initialVertex = 0;
+    int finalVertex = 0;
     while (argv[iterator] != NULL) {
-        printf("ARG: %s\n", argv[iterator]);
-        if (!isRecognizedArgWithValue(argv[iterator])) {
-            printf("Erro! Argumento [%s] inválido!\n", argv[iterator]);
+        char *currentArgument = argv[iterator];
+        printf("ARG: %s\n", currentArgument);
+        if (!isRecognizedArgWithValue(currentArgument)) {
+            printf("Erro! Argumento [%s] inválido!\n", currentArgument);
             return 1;
         }
         iterator++;
-        char *value = argv[iterator];
-        printf("My Value: %s\n", value);
+        char *nextArgument = argv[iterator];
+        if (strcmp(currentArgument, "-i") == 0) {
+            initialVertex = atoi(nextArgument);
+        } else if (strcmp(currentArgument, "-l") == 0) {
+            finalVertex = atoi(nextArgument);
+        }
+        printf("My Value: %s\n", nextArgument);
         iterator++;
     }
+    printf("INITIAL VERTEX: %d\n", initialVertex);
+    printf("FINAL VERTEX: %d\n", finalVertex);
     Graph *graph = readGraph();
     printGraph(graph);
     printf("\n\n");
-    int selectedVertex = 2;
-    int *distances = dijkstra(graph, selectedVertex);
+    int *distances = dijkstra(graph, initialVertex);
     printf("DIJKSTRA: ");
     for (int i = 0; i < 5; i++) {
-        printf("v%d -> v%d: %d\n", selectedVertex, i+1, distances[i]);
+        printf("v%d -> v%d: %d\n", initialVertex, i+1, distances[i]);
     }
+    printf("%d\n", distances[finalVertex - 1]);
     printf("\n");
     return 0;
 }
