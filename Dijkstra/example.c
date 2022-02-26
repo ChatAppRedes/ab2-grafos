@@ -36,14 +36,25 @@ bool isRecognizedArgWithoutValue(char *argument) {
     return false;
 }
 
+void showHelp() {
+    printf("\n\n======= AJUDA =======\n");
+    printf("-h : Mostra a ajuda\n");
+    printf("-o <arquivo> : redireciona a saida para o ‘‘arquivo’’\n");
+    printf("-f <arquivo> : indica o ‘‘arquivo’’ que contém o grafo de entrada\n");
+    printf("-s :  mostra a solução (em ordem crescente)\n");
+    printf("-i : vértice inicial (dependendo do algoritmo)\n");
+    printf("-l : vértice final (dependendo do algoritmo)\n");
+    printf("=====================\n\n");
+}
+
 int main(int argc, char *argv[])
 {
-    printf("%d\n", argc);
     int iterator = 1;
     int initialVertex = 0;
     int finalVertex = 0;
     char *outputFileName = "dijkstra.out";
     char *inputFileName = "graph1.data";
+    bool isAscendingOrder = false;
     char *lastRecognizedArgumentWithValue = "";
     while (argv[iterator] != NULL) {
         char *currentArgument = argv[iterator];
@@ -54,6 +65,11 @@ int main(int argc, char *argv[])
             continue;
         }
         if (isRecognizedArgWithoutValue(currentArgument)) {
+            if (strcmp(currentArgument, "-s") == 0) {
+                isAscendingOrder = true;
+            } else if (strcmp(currentArgument, "-h") == 0) {
+                showHelp();
+            }
             iterator++;
             continue;
         }
