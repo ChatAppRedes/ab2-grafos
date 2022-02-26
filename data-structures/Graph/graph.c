@@ -70,17 +70,17 @@ void printGraph(Graph *graph) {
   }
 }
 
-Graph *readGraph() {
+Graph *readGraph(FILE *file) {
   int vertices;
   int edges;
-  scanf("%d %d", &vertices, &edges);
-  getchar();
+  fscanf(file, "%d %d", &vertices, &edges);
+  fgetc(file);
   // printf("Vertices: %d; Edges: %d\n", vertices, edges);
   Graph *graph = createGraph(vertices);
   int currentAdjacency[3] = {-1, -1, 1};
   int currentPosition = 0;
   while (1) {
-    char x = getchar();
+    char x = fgetc(file);
     int isInTheEndOfAdjacency = (x == '\n');
     if (isInTheEndOfAdjacency) {
       // printf("Current adjacency: (%d) --[%d]-- (%d)\n", currentAdjacency[0], currentAdjacency[2], currentAdjacency[1]);
