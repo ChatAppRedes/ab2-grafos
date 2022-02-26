@@ -11,8 +11,10 @@ void readGraph() {
             continue;
         }
         if (x == ' ') continue;
-        if (x == 'e') break;
-        printf("%d ", atoi(&x));
+        int xAsInt = atoi(&x);
+        int isEOF = (x != '0' && xAsInt == 0);
+        if (isEOF) break;
+        printf("%d ", xAsInt);
     }
     printf("\n");
 }
