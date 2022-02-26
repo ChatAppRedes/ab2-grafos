@@ -4,6 +4,7 @@
 #include "dijkstra.c"
 
 #define PATTERNS_SIZE 4
+#define NON_VALUE_PATTERNS_SIZE 2
 
 bool isRecognizedArgWithValue(char *argument) {
     char *patterns[PATTERNS_SIZE] = {
@@ -21,6 +22,20 @@ bool isRecognizedArgWithValue(char *argument) {
     return false;
 }
 
+bool isRecognizedArgWithoutValue(char *argument) {
+    char *patterns[NON_VALUE_PATTERNS_SIZE] = {
+        "-h",
+        "-s"
+    };
+    for (int i = 0; i < NON_VALUE_PATTERNS_SIZE; i++) {
+        if(strcmp(argument, patterns[i]) == 0) {
+            printf("FOUND PATTERN! %s\n", patterns[i]);
+            return true;
+        }
+    }
+    return false;
+}
+
 int main(int argc, char *argv[])
 {
     printf("%d\n", argc);
@@ -29,25 +44,28 @@ int main(int argc, char *argv[])
     int finalVertex = 0;
     char *outputFileName = "dijkstra.out";
     char *inputFileName = "graph1.data";
+    char *lastRecognizedArgumentWithValue = "";
     while (argv[iterator] != NULL) {
         char *currentArgument = argv[iterator];
         printf("ARG: %s\n", currentArgument);
-        if (!isRecognizedArgWithValue(currentArgument)) {
-            printf("Erro! Argumento [%s] inválido!\n", currentArgument);
-            return 1;
+        if (isRecognizedArgWithValue(currentArgument)) {
+            lastRecognizedArgumentWithValue = currentArgument;
+            iterator++;
+            continue;
         }
-        iterator++;
-        char *nextArgument = argv[iterator];
-        if (strcmp(currentArgument, "-i") == 0) {
-            initialVertex = atoi(nextArgument);
-        } else if (strcmp(currentArgument, "-l") == 0) {
-            finalVertex = atoi(nextArgument);
-        } else if (strcmp(currentArgument, "-o") == 0) {
-            outputFileName = nextArgument;
-        } else if (strcmp(currentArgument, "-f") == 0) {
-            inputFileName = nextArgument;
+        if (isRecognizedArgWithoutValue(currentArgument)) {
+            iterator++;
+            continue;
         }
-        printf("My Value: %s\n", nextArgument);
+        if (strcmp(lastRecognizedArgumentWithValue, "-i") == 0) {
+            initialVertex = atoi(currentArgument);
+        } else if (strcmp(lastRecognizedArgumentWithValue, "-l") == 0) {
+            finalVertex = atoi(currentArgument);
+        } else if (strcmp(lastRecognizedArgumentWithValue, "-o") == 0) {
+            outputFileName = currentArgument;
+        } else if (strcmp(lastRecognizedArgumentWithValue, "-f") == 0) {
+            inputFileName = currentArgument;
+        }
         iterator++;
     }
     printf("INITIAL VERTEX: %d\n", initialVertex);
