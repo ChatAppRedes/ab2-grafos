@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
     int iterator = 1;
     int initialVertex = 0;
     int finalVertex = 0;
+    char *outputFileName = "dijkstra.out";
     while (argv[iterator] != NULL) {
         char *currentArgument = argv[iterator];
         printf("ARG: %s\n", currentArgument);
@@ -40,12 +41,15 @@ int main(int argc, char *argv[])
             initialVertex = atoi(nextArgument);
         } else if (strcmp(currentArgument, "-l") == 0) {
             finalVertex = atoi(nextArgument);
+        } else if (strcmp(currentArgument, "-o") == 0) {
+            outputFileName = nextArgument;
         }
         printf("My Value: %s\n", nextArgument);
         iterator++;
     }
     printf("INITIAL VERTEX: %d\n", initialVertex);
     printf("FINAL VERTEX: %d\n", finalVertex);
+    printf("OUTPUT FILE NAME: %s\n", outputFileName);
     Graph *graph = readGraph();
     printGraph(graph);
     printf("\n\n");
@@ -54,6 +58,8 @@ int main(int argc, char *argv[])
     for (int i = 0; i < 5; i++) {
         printf("v%d -> v%d: %d\n", initialVertex, i+1, distances[i]);
     }
+    FILE *outFile = fopen(outputFileName, "w");
+    fprintf(outFile, "%d\n", distances[finalVertex - 1]);
     printf("%d\n", distances[finalVertex - 1]);
     printf("\n");
     return 0;
