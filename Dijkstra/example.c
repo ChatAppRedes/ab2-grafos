@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../data-structures/Graph/readGraph.c"
+#include "../data-structures/Graph/graph.c"
 
 int main()
 {
-    readGraph();
+    Graph *graph = readGraph();
+    printGraph(graph);
     return 0;
 }
