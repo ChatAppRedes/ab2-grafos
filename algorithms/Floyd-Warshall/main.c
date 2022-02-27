@@ -12,6 +12,6 @@ int main(int argc, char *argv[])
     int *matrix[vertices];
     Graph graph = createGraph(matrix, vertices);
     readGraph(inputFile, graph, vertices, edges);
-    printGraph(graph, vertices);
+    floydWarshall(graph, vertices);
     return 0;
 }
