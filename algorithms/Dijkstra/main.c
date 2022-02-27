@@ -9,17 +9,19 @@ int main(int argc, char *argv[])
     handleArgs(argv);
     FILE *inputFile = fopen(inputFileName, "r");
     Graph *graph = readGraph(inputFile);
-    printGraph(graph);
-    printf("\n\n");
     int *distances = dijkstra(graph, initialVertex);
-    printf("DIJKSTRA: ");
-    for (int i = 0; i < 5; i++) {
-        printf("v%d -> v%d: %d\n", initialVertex, i+1, distances[i]);
-    }
     FILE *outFile = fopen(outputFileName, "w");
-    fprintf(outFile, "%d\n", distances[finalVertex - 1]);
-    printf("%d\n", distances[finalVertex - 1]);
-    printf("\n");
+    if (finalVertex == 0 || showCompleteSolution) {
+        for (int i = 0; i < graph->vertices; i++) {
+            printf("%d:%d ", i+1, distances[i]);
+            fprintf(outFile, "%d:%d ", i+1, distances[i]);
+        }
+        printf("\n");
+    } else {
+        printf("%d\n", distances[finalVertex - 1]);
+        printf("\n");
+        fprintf(outFile, "%d\n", distances[finalVertex - 1]);
+    }
     clean(graph);
     return 0;
 }

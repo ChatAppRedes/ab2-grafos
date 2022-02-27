@@ -9,7 +9,7 @@ int initialVertex = 0;
 int finalVertex = 0;
 char *outputFileName = "output.alg";
 char *inputFileName = "input.data";
-int isAscendingOrder = 0;
+int showCompleteSolution = 0;
 
 int isRecognizedArgWithValue(char *argument) {
     char *patterns[PATTERNS_SIZE] = {
@@ -61,7 +61,7 @@ void handleArgs(char *argv[]) {
         }
         if (isRecognizedArgWithoutValue(currentArgument)) {
             if (strcmp(currentArgument, "-s") == 0) {
-                isAscendingOrder = 1;
+                showCompleteSolution = 1;
             } else if (strcmp(currentArgument, "-h") == 0) {
                 showHelp();
             }
@@ -83,5 +83,5 @@ void handleArgs(char *argv[]) {
     // printf("FINAL VERTEX: %d\n", finalVertex);
     // printf("OUTPUT FILE NAME: %s\n", outputFileName);
     // printf("INPUT FILE NAME: %s\n", inputFileName);
-    // printf("ASCENDING ORDER: %d\n", isAscendingOrder);
+    // printf("ASCENDING ORDER: %d\n", showCompleteSolution);
 }
