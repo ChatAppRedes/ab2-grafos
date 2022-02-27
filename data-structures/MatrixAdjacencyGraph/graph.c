@@ -11,7 +11,6 @@ Graph createGraph(int *matrix[], int verticesAmount) {
       matrix[i][j] = 0;
     }
   }
-  printf("🙈 CREATE GRAPH: %d\n", matrix[5][3]);
   return matrix;
 }
 
@@ -21,11 +20,8 @@ void createEdge(
   int finalVertex, 
   int weight
 ) {
-  printf("INITIAL -> FINAL\n");
   graph[initialVertex][finalVertex] = weight;
-  printf("FINAL -> INITIAL\n");
   graph[finalVertex][initialVertex] = weight;
-  printf("END EDGE\n");
 }
 
 void printGraph(Graph graph, int verticesAmount) {
@@ -74,6 +70,4 @@ void readGraph(FILE *file, Graph graph, int vertices, int edges) {
     currentAdjacency[currentPosition] = xAsInt;
     currentPosition++;
   }
-  printf("🙈 READ GRAPH: %d\n", graph[5][3]);
-  // return graph;
 }
