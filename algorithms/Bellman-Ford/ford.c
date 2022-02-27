@@ -34,11 +34,11 @@ void relax(Graph *graph, int *distances, int *predecessor, int u, int v)
     }
 }
 
-void bellmanFord(Graph *graph, int initialVertex)
+int *bellmanFord(Graph *graph, int initialVertex)
 {
     initialVertex--;
     printf("SETUP DISTANCES\n");
-    int distances[graph->vertices];
+    int *distances = (int *) malloc(graph->vertices * sizeof(int));
     printf("SETUP PREDECESSORS\n");
     int predecessors[graph->vertices];
     printf("SETUP\n");
@@ -64,45 +64,5 @@ void bellmanFord(Graph *graph, int initialVertex)
         printf("%d: %d\n", i+1, distances[i]);
         printf("END DISTANCES: \n");
     }
-    // bool hasNegativeCycle = detectNegativeCycle(graph, distances);
-    // printf("END HAS - CYCLE\n");
-    // if (hasNegativeCycle) {
-    //     printf("Ciclo negativo detectado!\n");
-    // }
-    // return distances;
+    return distances;
 }
-
-        // for (int j = 0; j < graph->edges; j++) {
-        //     // printf("FOR J %d times\n", j);
-        //     // printf("CURRENT VERTEX\n");
-        //     int currentVertex = graph->adjacency[j].head->vertex;
-        //     // printf("WEIGHT\n");
-        //     // int weight = graph->adjacency[j].head->weight;
-        //     // printf("NEXT\n");
-        //     // int nextVertex = graph->adjacency[j].head->next->vertex;
-        //     // printf("COMPARISON\n");
-        //     Adjacency *adjacency = graph->adjacency[currentVertex].head;
-        //     int v = adjacency->vertex;
-        //     while(adjacency && adjacency->vertex != v)
-        //         adjacency = adjacency->next;
-        //     if (adjacency) 
-        //     {
-        //         if(
-        //             distances[currentVertex] != INFINITY
-        //             && distances[v] > distances[currentVertex] + adjacency->weight
-        //         )
-        //         {
-        //             distances[v] = distances[currentVertex] + adjacency->weight;
-        //             predecessors[v] = currentVertex;
-        //         }    
-        //     }
-        //     // if (
-        //     //     distances[currentVertex] != INFINITY 
-        //     //     && distances[nextVertex] > distances[currentVertex] + weight
-        //     // ) {
-        //     //     distances[nextVertex] = distances[currentVertex] + weight;
-        //     //     predecessors[nextVertex] = currentVertex;
-        //     // }
-        //     // printf("END COMPARISON\n");
-        // }
-        // printf("END FOR J %d times\n", i);
