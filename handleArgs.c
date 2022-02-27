@@ -19,7 +19,6 @@ int isRecognizedArgWithValue(char *argument) {
     };
     for (int i = 0; i < PATTERNS_SIZE; i++) {
         if(strcmp(argument, patterns[i]) == 0) {
-            printf("FOUND PATTERN! %s\n", patterns[i]);
             return 1;
         }
     }
@@ -33,7 +32,6 @@ int isRecognizedArgWithoutValue(char *argument) {
     };
     for (int i = 0; i < NON_VALUE_PATTERNS_SIZE; i++) {
         if(strcmp(argument, patterns[i]) == 0) {
-            printf("FOUND PATTERN! %s\n", patterns[i]);
             return 1;
         }
     }
@@ -55,7 +53,6 @@ void handleArgs(char *argv[]) {
     char *lastRecognizedArgumentWithValue = "";
     while (argv[iterator] != NULL) {
         char *currentArgument = argv[iterator];
-        printf("ARG: %s\n", currentArgument);
         if (isRecognizedArgWithValue(currentArgument)) {
             lastRecognizedArgumentWithValue = currentArgument;
             iterator++;
@@ -81,9 +78,9 @@ void handleArgs(char *argv[]) {
         }
         iterator++;
     }
-    printf("INITIAL VERTEX: %d\n", initialVertex);
-    printf("FINAL VERTEX: %d\n", finalVertex);
-    printf("OUTPUT FILE NAME: %s\n", outputFileName);
-    printf("INPUT FILE NAME: %s\n", inputFileName);
-    printf("ASCENDING ORDER: %d\n", isAscendingOrder);
+    // printf("INITIAL VERTEX: %d\n", initialVertex);
+    // printf("FINAL VERTEX: %d\n", finalVertex);
+    // printf("OUTPUT FILE NAME: %s\n", outputFileName);
+    // printf("INPUT FILE NAME: %s\n", inputFileName);
+    // printf("ASCENDING ORDER: %d\n", isAscendingOrder);
 }
