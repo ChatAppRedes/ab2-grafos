@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "graph.c"
+#include "graph.h"
 
 int main() {
   Graph *graph = createGraph(5);

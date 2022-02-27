@@ -1,25 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define true 1
-#define false 0
-
-typedef int bool;
-
-typedef struct adj {
-  int vertex;
-  int weight;
-  struct adj *next;
-} Adjacency;
-
-typedef struct vertex {
-  Adjacency *head; 
-} Vertex;
-
-typedef struct sGraph {
-  int vertices;
-  int edges;
-  Vertex *adjacency;
-} Graph;
+#include "graph.h"
 
 Graph *createGraph(int amountOfVertices) {
   Graph *newGraph = (Graph *) malloc(sizeof(Graph));
@@ -108,6 +89,14 @@ Graph *readGraph(FILE *file) {
     currentAdjacency[currentPosition] = xAsInt;
     currentPosition++;
   }
+
+
   // printf("\n");
   return graph;
+}
+void clean (Graph *graph)
+{
+  if(graph != NULL){
+    free(graph);
+  }
 }

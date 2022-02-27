@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "../../data-structures/Graph/graph.c"
+#include "dijkstra.h"
+
+// void x(tStack *graph, int startingVertex) {
+//     graph->
+// }
 
 void initializeDijkstra(Graph *graph, int *distances, int *predecessor, int s)
 {

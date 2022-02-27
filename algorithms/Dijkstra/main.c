@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../handleArgs.c"
-#include "dijkstra.c"
+#include "dijkstra.h"
 
 int main(int argc, char *argv[])
 {
