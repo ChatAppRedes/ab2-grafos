@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define PATTERNS_SIZE 4
 #define NON_VALUE_PATTERNS_SIZE 2
 

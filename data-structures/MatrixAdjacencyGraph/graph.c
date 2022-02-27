@@ -11,6 +11,7 @@ Graph createGraph(int *matrix[], int verticesAmount) {
       matrix[i][j] = 0;
     }
   }
+  printf("🙈 CREATE GRAPH: %d\n", matrix[5][3]);
   return matrix;
 }
 
@@ -37,14 +38,11 @@ void printGraph(Graph graph, int verticesAmount) {
   }
 }
 
-Graph readGraph(FILE *file) {
-  int vertices;
-  int edges;
-  fscanf(file, "%d %d", &vertices, &edges);
+void readGraph(FILE *file, Graph graph, int vertices, int edges) {
+
   fgetc(file);
   // printf("Vertices: %d; Edges: %d\n", vertices, edges);
-  int *matrix[vertices];
-  Graph graph = createGraph(matrix, vertices);
+
   int currentAdjacency[3] = {-1, -1, 1};
   int currentPosition = 0;
   while (1) {
@@ -76,5 +74,6 @@ Graph readGraph(FILE *file) {
     currentAdjacency[currentPosition] = xAsInt;
     currentPosition++;
   }
-  return graph;
+  printf("🙈 READ GRAPH: %d\n", graph[5][3]);
+  // return graph;
 }
