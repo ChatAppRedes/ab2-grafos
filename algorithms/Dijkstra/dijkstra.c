@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "../data-structures/Graph/graph.c"
+#include "../../data-structures/Graph/graph.c"
 
 void initializeDijkstra(Graph *graph, int *distances, int *predecessor, int s)
 {

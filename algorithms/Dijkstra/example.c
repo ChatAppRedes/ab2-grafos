@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../handleArgs.c"
+#include "../../handleArgs.c"
 #include "dijkstra.c"
 
 int main(int argc, char *argv[])
