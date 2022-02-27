@@ -20,5 +20,6 @@ int main(int argc, char *argv[])
     fprintf(outFile, "%d\n", distances[finalVertex - 1]);
     printf("%d\n", distances[finalVertex - 1]);
     printf("\n");
+    clean(graph);
     return 0;
 }

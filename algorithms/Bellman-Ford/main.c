@@ -12,12 +12,6 @@ int main(int argc, char *argv[])
     printGraph(graph);
     printf("FORD: \n");
     bellmanFord(graph, initialVertex);
-    // for (int i = 0; i < graph->vertices; i++) {
-    //     printf("v%d -> v%d: %d\n", initialVertex, i+1, distances[i]);
-    // }
-    // FILE *outFile = fopen(outputFileName, "w");
-    // fprintf(outFile, "%d\n", distances[finalVertex - 1]);
-    // printf("%d\n", distances[finalVertex - 1]);
-    // printf("\n");
+    clean(graph);
     return 0;
 }
