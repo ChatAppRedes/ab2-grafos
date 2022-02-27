@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../handleArgs.c"
-#include "ford.c"
+#include "ford.h"
 
 int main(int argc, char *argv[])
 {

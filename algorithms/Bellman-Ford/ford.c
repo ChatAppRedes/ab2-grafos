@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
-#include "../../data-structures/Graph/graph.c"
+#include "ford.h"
 
 const int INFINITY = INT_MAX / 2;
 
